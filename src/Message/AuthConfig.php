@@ -29,16 +29,23 @@ class AuthConfig
         $this->senderId = $senderId;
     }
 
-    public function toArray()
+    /**
+     * @return string|null
+     */
+    public function getServerKey()
     {
-       return [
-            'server_key' => $this->serverKey,
-            'sender_id' => $this->senderId,
-            'server_send_url' => 'https://fcm.googleapis.com/fcm/send',
-            'server_group_url' => 'https://android.googleapis.com/gcm/notification',
-            'timeout' => 30.0, // in second
-        ];
+        return $this->serverKey;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getSenderId()
+    {
+        return $this->senderId;
+    }
+
+
 
 
 }

@@ -30,7 +30,9 @@ abstract class BaseRequest
     public function __construct(AuthConfig $authConfig = null)
     {
         if ($authConfig){
-            $this->config = $authConfig->toArray();
+            $this->config = app('config')->get('fcm.http', []);
+            $this->config['server_key'] = $authConfig->getServerKey();
+            $this->config['sender_id'] = $authConfig->getSenderId();
         } else {
             $this->config = app('config')->get('fcm.http', []);
         }

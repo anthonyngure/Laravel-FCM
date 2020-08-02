@@ -50,13 +50,6 @@ class Request extends BaseRequest
 
 
     /**
-     * @internal
-     *
-     * @var AuthConfig|null
-     */
-    protected $authConfig;
-
-    /**
      * Request constructor.
      *
      * @param                     $to
@@ -67,14 +60,13 @@ class Request extends BaseRequest
      */
     public function __construct($to, Options $options = null, PayloadNotification $notification = null, PayloadData $data = null, Topics $topic = null, AuthConfig $authConfig = null)
     {
-        parent::__construct();
+        parent::__construct($authConfig);
 
         $this->to = $to;
         $this->options = $options;
         $this->notification = $notification;
         $this->data = $data;
         $this->topic = $topic;
-        $this->authConfig = $authConfig;
     }
 
     /**
