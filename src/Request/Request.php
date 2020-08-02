@@ -2,6 +2,7 @@
 
 namespace LaravelFCM\Request;
 
+use LaravelFCM\Message\AuthConfig;
 use LaravelFCM\Message\Topics;
 use LaravelFCM\Message\Options;
 use LaravelFCM\Message\PayloadData;
@@ -47,6 +48,14 @@ class Request extends BaseRequest
      */
     protected $topic;
 
+
+    /**
+     * @internal
+     *
+     * @var AuthConfig|null
+     */
+    protected $authConfig;
+
     /**
      * Request constructor.
      *
@@ -56,7 +65,7 @@ class Request extends BaseRequest
      * @param PayloadData         $data
      * @param Topics|null         $topic
      */
-    public function __construct($to, Options $options = null, PayloadNotification $notification = null, PayloadData $data = null, Topics $topic = null)
+    public function __construct($to, Options $options = null, PayloadNotification $notification = null, PayloadData $data = null, Topics $topic = null, AuthConfig $authConfig = null)
     {
         parent::__construct();
 
@@ -65,6 +74,7 @@ class Request extends BaseRequest
         $this->notification = $notification;
         $this->data = $data;
         $this->topic = $topic;
+        $this->authConfig = $authConfig;
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace LaravelFCM\Request;
 
+use LaravelFCM\Message\AuthConfig;
+
 /**
  * Class BaseRequest.
  */
@@ -23,10 +25,15 @@ abstract class BaseRequest
 
     /**
      * BaseRequest constructor.
+     * @param AuthConfig|null $authConfig
      */
-    public function __construct()
+    public function __construct(AuthConfig $authConfig = null)
     {
-        $this->config = app('config')->get('fcm.http', []);
+        if ($authConfig){
+            $this->config = $authConfig->toArray();
+        } else {
+            $this->config = app('config')->get('fcm.http', []);
+        }
     }
 
     /**
