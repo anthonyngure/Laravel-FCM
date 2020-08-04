@@ -26,11 +26,12 @@ class FCMSender extends HTTPSender
      * - a unique device with is registration Token
      * - or to multiples devices with an array of registrationIds
      *
-     * @param string|array             $to
-     * @param Options|null             $options
+     * @param string|array $to
+     * @param Options|null $options
      * @param PayloadNotification|null $notification
-     * @param PayloadData|null         $data
+     * @param PayloadData|null $data
      *
+     * @param AuthConfig|null $authConfig
      * @return DownstreamResponse|null
      */
     public function sendTo($to, Options $options = null, PayloadNotification $notification = null, PayloadData $data = null, AuthConfig $authConfig = null)
@@ -40,7 +41,7 @@ class FCMSender extends HTTPSender
         if (is_array($to) && !empty($to)) {
             $partialTokens = array_chunk($to, self::MAX_TOKEN_PER_REQUEST, false);
             foreach ($partialTokens as $tokens) {
-                $request = new Request($tokens, $options, $notification, $data, $authConfig);
+                $request = new Request($tokens, $options, $notification, $data, null, $authConfig);
 
                 $responseGuzzle = $this->post($request);
 

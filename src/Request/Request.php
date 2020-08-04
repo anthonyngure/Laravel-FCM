@@ -53,10 +53,11 @@ class Request extends BaseRequest
      * Request constructor.
      *
      * @param                     $to
-     * @param Options             $options
+     * @param Options $options
      * @param PayloadNotification $notification
-     * @param PayloadData         $data
-     * @param Topics|null         $topic
+     * @param PayloadData $data
+     * @param Topics|null $topic
+     * @param AuthConfig|null $authConfig
      */
     public function __construct($to, Options $options = null, PayloadNotification $notification = null, PayloadData $data = null, Topics $topic = null, AuthConfig $authConfig = null)
     {
